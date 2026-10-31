@@ -129,9 +129,11 @@ def degrade(page: Image.Image, s: Scan, seed: int = 7) -> Image.Image:
 
 
 def decode(img: Image.Image) -> str | None:
-    """Return the payload, or None if nothing could be read."""
-    found = zxingcpp.read_barcodes(img)
-    return found[0].text if found else None
+    """Return the document ID, or None if no matching code could be read."""
+    for result in zxingcpp.read_barcodes(img):
+        if result.text.startswith("DEMO-PO:"):
+            return result.text
+    return None
 
 
 # ----------------------------------------------------------------------

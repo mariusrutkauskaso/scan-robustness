@@ -22,10 +22,13 @@ pip install -r requirements.txt
 python scan_robustness.py
 ```
 
+Requires Python 3.9+. A full run takes about a minute.
+
 ## Results
 
 Reference page rendered at 400 dpi, then scaled down to simulate lower scan
 settings. The printed code is 24 mm square with error correction level M.
+The 24 mm includes the white quiet zone around the code.
 
 ### Scan resolution
 
@@ -88,7 +91,7 @@ makes a wrong identifier close to impossible.
 
 ## Method and limits
 
-The degradation model is deliberately simple: bilinear downscaling, Gaussian
+The degradation model is deliberately simple: Lanczos downscaling, Gaussian
 blur, uniform pixel noise, optional JPEG compression and rotation. It
 approximates a scanner rather than modelling one. Real scanners also introduce
 banding, uneven illumination and dust.
